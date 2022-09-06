@@ -1,158 +1,123 @@
-body {
-  touch-action: pan-y;
-}
-#container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #222;
-  display: grid;
-  grid-template-rows: 60% 40%;
-}
+/*
+    Auther: Abdelrhman Said
+*/
 
-#maze {
-  position: absolute;
-  width: 340px;
-  height: 240px;
-  /*background: #39a;
-	
-	align-self: center;
-	justify-self: center;
-	place-self: center center;*/
-  top: 30vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-.mbox,
-.controls {
-  height: 100%;
-  background: #222;
-  display: grid;
-}
-
-.mbox {
-}
-
-.buttons {
-  width: 210px;
-  height: 140px;
-  background: #222;
-  align-self: center;
-  justify-self: center;
-  display: grid;
-  grid-template-rows: 70px 70px;
-  grid-template-columns: 70px 70px 70px;
-}
-
-.btn {
-  width: 60px;
-  height: 60px;
-  border: 2px #fff solid;
-  border-bottom: 2px #fff solid;
-  align-self: center;
-  justify-self: center;
-  cursor: pointer;
-  border-radius: 8px;
-  display: grid;
-  /*box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.2);*/
-}
-.chevron {
-  height: 20px;
-  width: 20px;
-  align-self: center;
-  justify-self: center;
-  color: #222;
-  font-size: 20px;
-  line-height: 20px;
-  text-align: center;
-  color: #fff;
-}
-
-#bu {
-  grid-column-start: 2;
-}
-#bd {
-  grid-column-start: 2;
-  grid-row-start: 2;
-}
-#bl {
-  grid-column-start: 1;
-  grid-row-start: 2;
-}
-#br {
-  grid-column-start: 3;
-  grid-row-start: 2;
-}
-
-#thingie,
-#home {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  /*background: #39a;
-	transition: all .1s;*/
-}
-
-.emo {
-  position: absolute;
-  top: 4px;
-  left: 1px;
-  width: 13px;
-  height: 13px;
-  border-radius: 20px;
-  font-size: 15px;
-  line-height: 15px;
-  text-align: left;
-}
-
-.barrier {
-  position: absolute;
-  background: #fff;
-}
-
-#top {
-  top: 20px;
-  left: 20px;
-  width: 300px;
-  height: 2px;
-}
-
-#bottom {
-  top: 220px;
-  left: 20px;
-  width: 302px;
-  height: 2px;
-}
-
-/*style reset*/
-button {
-  display: inline-block;
-  border: none;
-  padding: none;
+* {
   margin: 0;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: none;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+  outline: none !important;
   -webkit-tap-highlight-color: transparent;
 }
 
-button:hover,
-button:focus {
-  -webkit-appearance: none;
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  place-items: center;
+  background: linear-gradient(315deg, #ffffff, #d7e1ec);
 }
 
-button:focus {
-  outline: none;
+.wrapper {
+  display: inline-flex;
+  list-style: none;
 }
 
-button:active {
-  transform: scale(1);
-  -webkit-appearance: none;
+.wrapper .icon {
+  position: relative;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877f2;
+  color: #ffffff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1da1f2;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #e4405f;
+  color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+  background: #333333;
+  color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+  background: #cd201f;
+  color: #ffffff;
 }
